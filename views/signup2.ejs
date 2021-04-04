@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="English">
+<head>
+<title>SignUp Page</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://kit.fontawesome.com/1f4e0e6623.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="styling.css" >
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="ejs.js"></script>
+
+</head>
+<body class="container container-fluid">
+<div class="row">
+    <div class="col-md-2">
+
+    </div>
+    <div class="col-md-8 column-mid">
+        <h1>Sign Up Here!</h1>
+        <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8">  
+            <form method="post" > 
+            <div class="input-group">
+            <i class="fa fa-user group-addon a1"></i>
+        <input type="text" name="firstname" class="form-control a2" placeholder="Enter First Name" required>
+        </div>
+        <div class="input-group">
+            <i class="fa fa-user group-addon a1"></i>
+        <input type="text" name="lastname" class="form-control a2" placeholder="Enter Last Name" required>
+        </div>
+        <div class="input-group">
+            <i class="fa fa-envelope group-addon a1"></i>
+        <input type="email" name="email" class="form-control a2" placeholder="Enter Email" required> 
+        </div>
+        <div class="input-group">
+            <i class="fa fa-address-book group-addon a1"></i>
+        <input type="text" name="address" class="form-control a2" placeholder="Enter Address" required>
+        </div>
+        <div class="input-group">
+            <i class="fa fa-key group-addon a1"></i>
+        <input type="password" name="password" class="form-control a2" placeholder="Enter Password" required>
+        </div>
+       <input type="submit" name="btnsubmit" class="btn btn-primary" value="Sign Up" >
+        
+       </form>
+       <% if(html !=''){ %>
+       <div id="alert1" class="alert alert-primary" style="color: black;"> <%- html%>
+       </div>
+       <%} %>
+        </div>
+        <div class="col-md-2">
+        </div>
+        </div>
+     
+    </div>
+    <div class="col-md-2">
+        
+    </div>
+</div>
+</body>
+</html>
