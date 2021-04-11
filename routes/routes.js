@@ -62,5 +62,12 @@ const routes = async (fastify, done) => {
         await reply.view('./views/signup.ejs', { html })
         done()
      })
+       fastify.ready(() => {
+  console.log(fastify.printRoutes())
+  // └── /
+  //   ├── test (GET)
+  //   │   └── /hello (GET)
+  //   └── hello/world (GET)
+})
 }
 module.exports = routes
