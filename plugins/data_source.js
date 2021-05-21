@@ -14,8 +14,6 @@ async function dbConnector(fastify, options) {
             idle: 10000
         }
     }
-    console.log(process.env.NODE_ENV)
-    console.log("===================",process.env.PORT_LOCAL)
     //INCASE OF LOCAL DEVELOPMENT
     config.host = '127.0.0.1';
     config.port = '3306';
@@ -36,7 +34,6 @@ async function dbConnector(fastify, options) {
             "Database connected to " + config.host + ":" + config.port
         )
         fastify.decorate("db", sequelize)
-        //Create Sequelize models in './../models' dir
         fastify.register(AutoLoad, {
             dir: path.join(options.rootDir, "models"),
             options: Object.assign({}, {}),

@@ -1,5 +1,5 @@
 // Require the framework and instantiate it
-const fastify = require('fastify')({
+  const fastify = require('fastify')({
     logger: true
   })
   const path=require('path')
@@ -14,13 +14,6 @@ const fastify = require('fastify')({
   fastify.register(require("./app.js")); 
   
   // Run the server!
-  fastify.ready(() => {
-  console.log(fastify.printRoutes())
-  // └── /
-  //   ├── test (GET)
-  //   │   └── /hello (GET)
-  //   └── hello/world (GET)
-})
   fastify.listen(9000, function (err, address) {
     if (err) {
       fastify.log.error(err)
