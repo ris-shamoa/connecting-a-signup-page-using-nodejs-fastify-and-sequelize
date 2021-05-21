@@ -1,5 +1,5 @@
 // Require the framework and instantiate it
-const fastify = require('fastify')({
+  const fastify = require('fastify')({
     logger: true
   })
   const path=require('path')
@@ -14,8 +14,7 @@ const fastify = require('fastify')({
   fastify.register(require("./app.js")); 
   
   // Run the server!
-  
-  fastify.listen(3000, function (err, address) {
+  fastify.listen(9000, function (err, address) {
     if (err) {
       fastify.log.error(err)
       process.exit(1)

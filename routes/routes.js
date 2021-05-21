@@ -3,11 +3,7 @@ const fastify = require("fastify")({
 })
 const sequilize = require("sequelize")
 const qs = require("qs")
-
-//main route function exported
 const routes = async (fastify, done) => {
-
-//point-of-view plugin included and using ejs as template engine
       fastify.register(require('point-of-view'), {
             engine: {
             ejs: require('ejs')
