@@ -3,11 +3,11 @@ const Sequelize = require("sequelize");
 
 const Model = Sequelize.Model;
 
-class audit_trail2 extends Model {}
+class user extends Model {}
 
-async function auditTrail2(fastify, __) {
+async function User(fastify, __) {
     const sequelize = fastify.db;
-    audit_trail2.init({
+    user.init({
         id: {
             type: Sequelize.INTEGER,
             primaryKey: true,
@@ -24,6 +24,7 @@ async function auditTrail2(fastify, __) {
         email: {
             type: Sequelize.STRING,
             allowNull: false,
+            unique: true
         },
         address: {
             type: Sequelize.TEXT,
@@ -35,22 +36,22 @@ async function auditTrail2(fastify, __) {
         }
     }, {
         sequelize,
-        modelName: "audit_trail2",
-        tableName: "user2"
+        modelName: "user",
+        tableName: "user"
     });
     
-    audit_trail2
+    user
         .sync()
         .then(() => {
-            fastify.log.info("audit_trail2 table synced");
+            fastify.log.info("user table synced");
         })
         .catch((err) =>
             fastify.log.error(
-                "failed to create audit_trail2 table with error: " + err
+                "failed to create user table with error: " + err
             )
         );
 
 
-    fastify.decorate("audit_trail2", audit_trail2);
+    fastify.decorate("user", user);
 }
-module.exports = fp(auditTrail2);
+module.exports = fp(User);

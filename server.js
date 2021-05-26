@@ -3,16 +3,7 @@
     logger: true
   })
   const path=require('path')
-
-  fastify.register(require('fastify-static'), {
-    root: path.join(__dirname, './public'),
-  
-  })
-
-  // Declare a route
-  
   fastify.register(require("./app.js")); 
-  
   // Run the server!
   fastify.listen(9000, function (err, address) {
     if (err) {
