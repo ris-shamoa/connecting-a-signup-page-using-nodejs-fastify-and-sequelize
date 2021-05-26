@@ -34,9 +34,9 @@ async function dbConnector(fastify, options) {
             "Database connected to " + config.host + ":" + config.port
         )
         fastify.decorate("db", sequelize)
+        console.log("===== path to model ====", path.resolve(__dirname, "./../models"))
         fastify.register(AutoLoad, {
-            dir: path.join(options.rootDir, "models"),
-            options: Object.assign({}, {}),
+            dir: path.resolve(__dirname, "./../models")
         });
     }
 }

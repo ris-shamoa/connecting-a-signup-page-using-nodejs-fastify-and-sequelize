@@ -17,23 +17,32 @@ const routes = async (fastify, done) => {
          })
          payload.on('end', async function () {
             try {
-            const parsed = await qs.parse(body)
-            done(null, parsed)
-            done()
-         } catch (e) {
-            done(e)
-           }
-         })
+              const parsed = await qs.parse(body)
+              done(null, parsed)
+              done()
+            } catch (e) {
+              done(e)
+            }
+        })
       })
-      await fastify.register(require('fastify-express'))
       fastify.post('/', async (req, reply) => {
           var request_body = req.body
           if (request_body != undefined) {
-              var check = await fastify.audit_trail2.findOne({ where: { email: request_body['email'] } })
+              var check = await fastify.user.findOne({ 
+                where: { 
+                  email: request_body.email 
+                } 
+              })
               console.log('bottom check :' + check + '\n\n\n')
               if (check == null) {
-                const audit = await fastify.audit_trail2.create({ firstname: request_body['firstname'], lastname: request_body['lastname'], email: request_body['email'], address: request_body['address'], password: request_body['password'] });
-                if (audit) {
+                const user = await fastify.user.create({ 
+                  firstname: request_body.firstname, 
+                  lastname: request_body.lastname, 
+                  email: request_body.email, 
+                  address: request_body.address, 
+                  password: request_body.password 
+                });
+                if (user) {
                    let data = ["successfully added in table"]
                    html = ejs.render('<%= data.join(", "); %>', { data: data });
                    reply.view('./views/signup.ejs', { html })
@@ -52,11 +61,10 @@ const routes = async (fastify, done) => {
 
           }
       })
-     fastify.get('/', async (req, reply) => {
-        let people = []
-        html = ejs.render('<%= people.join(", "); %>', { people: people });
-        await reply.view('./views/signup.ejs', { html })
-        done()
-     })
+      fastify.get('/', async (req, reply) => {
+          let people = []
+          html = ejs.render('<%= people.join(", "); %>', { people: people });
+          await reply.view('./views/signup.ejs', { html })
+      })
 }
 module.exports = routes
